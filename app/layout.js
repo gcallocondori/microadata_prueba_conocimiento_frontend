@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,13 +18,31 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="es">
+        <body className="bg-gray-50 min-h-screen flex flex-col">
+        <header className="bg-white shadow">
+            <div className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 className="text-xl font-bold">MICRODATA Inventarios</h1>
+                <nav className="space-x-4">
+                    <Link href="/ingreso" className="px-3 py-1 rounded hover:bg-gray-200">
+                        Ingreso
+                    </Link>
+                    <Link href="/salida" className="px-3 py-1 rounded hover:bg-gray-200">
+                        Salida
+                    </Link>
+                </nav>
+            </div>
+        </header>
+        <main className="flex-grow max-w-4xl mx-auto w-full px-4 py-6">
+            {children}
+        </main>
+        <footer className="bg-white border-t py-4">
+            <div className="text-center text-sm text-gray-500">
+                &copy; {new Date().getFullYear()} MICRODATA
+            </div>
+        </footer>
+        </body>
+        </html>
+    )
 }
